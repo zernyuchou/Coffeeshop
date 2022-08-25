@@ -1,0 +1,107 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'config/**/*'
+    - 'db/schema.rb'
+    - 'bin/**/*'
+    - 'tmp/**/*'
+    - 'node_modules/**/*'
+    - 'Rakefile'
+    - 'config.ru'
+  NewCops: enable
+
+Rails/Output:
+  Exclude: ['db/seeds.rb']
+
+RSpec/ImplicitSubject:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 137
+
+Metrics/BlockLength:
+ Max: 238
+ Exclude:
+   - 'spec/**/*_spec.rb'
+   - 'spec/factories/**/*.rb'
+
+Metrics/ClassLength:
+  Max: 269
+  CountAsOne: ['array', 'hash']
+
+Metrics/CyclomaticComplexity:
+  Max: 33
+
+Layout/LineLength:
+  Max: 250
+  IgnoredPatterns:
+    - '(,.*){5,}?' # Comma list of at least 5 elements
+
+Metrics/MethodLength:
+  Max: 83
+
+Metrics/PerceivedComplexity:
+  Max: 34
+
+Rails/EnvironmentVariableAccess:
+  Enabled: false
+
+Rails/OutputSafety:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/TimeZone:
+  Exclude: ['app/**/*']
+
+RSpec/ExampleLength:
+  Max: 57
+
+RSpec/MultipleExpectations:
+  Max: 43
+
+RSpec/NestedGroups:
+  Max: 4
+
+Style/Documentation:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: true
+  Max: 8
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: true
+
+# https://github.com/rubocop-hq/rubocop/issues/4425
+Style/FormatStringToken:
+  Enabled: true
+  Exclude:
+    - "config/routes.rb"
+
+Rails/ReversibleMigration:
+  Enabled: true
+
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/tasks/*'
+
+Rake/MethodDefinitionInTask:
+  Exclude:
+    - 'lib/tasks/*'
+
+Rails/BulkChangeTable:
+  Exclude:
+    - 'db/migrate/*'

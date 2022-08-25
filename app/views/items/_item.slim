@@ -1,0 +1,5 @@
+tr.bg-white.border-b.dark:bg-gray-800.dark:border-gray-700.hover:bg-gray-50.dark:hover:bg-gray-600
+  th.py-4.px-6.font-medium.text-gray-900.whitespace-nowrap.dark:text-white[scope="row"]= item.name
+  td.py-4.px-6= number_to_currency(item.price/100.0, :unit => '$')
+  td.py-4.px-6.text-right
+    input#small-input.block.p-2.text-gray-900.bg-gray-50.rounded-lg.border.border-gray-300.sm:text-xs.focus:ring-blue-500.focus:border-blue-500.dark:bg-gray-700.dark:border-gray-600.dark:placeholder-gray-400.dark:text-white.dark:focus:ring-blue-500.dark:focus:border-blue-500 type="number" name="items[#{item.id}]" data-action="input->orders#calculate"

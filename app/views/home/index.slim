@@ -1,0 +1,35 @@
+.flex.flex-wrap.my-12
+  .w-full
+    .flex.justify-between.items-baseline.mb-6[data-controller="extended-modal" data-extended-modal-prevent-default-action-opening="false"]
+      h1.text-3xl.text-gray-900
+        | Available Items
+    .overflow-x-auto.relative.shadow-md.sm:rounded-lg
+      - if @items.present?
+        = form_tag calculate_path, id: 'order-form', data: {controller: 'orders'} do
+          table.w-full.text-sm.text-left.text-gray-500.dark:text-gray-400[data-action="click->orders#connect"]
+            thead.text-xs.text-gray-700.uppercase.bg-gray-50.dark:bg-gray-700.dark:text-gray-400
+              tr
+                th.py-3.px-6[scope="col"] Name
+                th.py-3.px-6[scope="col"] Price
+                th.py-3.px-6[scope="col"] Qty
+            tbody
+              = render @items
+            tfoot
+              tr
+                th.py-3.px-6.text-base[scope="row"] Subtotal
+                td
+                td.py-3.px-6
+                  = turbo_frame_tag 'sub_total'
+              tr              
+                th.py-3.px-6.text-base[scope="row"] Discount
+                td.py-3.px-6
+                  = turbo_frame_tag 'discount_details'
+                td.py-3.px-6
+                  = turbo_frame_tag 'discount_prices'
+              tr.font-semibold.text-gray-900.dark:text-white
+                th.py-3.px-6.text-base[scope="row"] Total
+                td
+                td.py-3.px-6
+                  = turbo_frame_tag 'total'
+      - else
+        p There is no available item
