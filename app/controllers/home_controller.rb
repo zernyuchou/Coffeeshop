@@ -3,6 +3,7 @@
 class HomeController < ApplicationController
   def index
     @items = Item.all
+    @discounts = Discount.by_items
   end
 
   def calculate
@@ -13,7 +14,7 @@ class HomeController < ApplicationController
 
     @sub_total = @orders.map{|item, quantity| item.price * quantity}.sum
 
-    discounts = Discount.with_items(item_ids).sort_by(&:applied_price).reverse
+    discounts = Discount.with_items(item_ids).sort_by(&:price).reverse
     @available_discounts = {}
 
     discounts.each do |discount|
@@ -31,14 +32,11 @@ class HomeController < ApplicationController
       end
     end
 
-    @total = @sub_total - @available_discounts.map{|discount, quantity| discount.applied_price * quantity}.sum
+    @total = @sub_total - @available_discounts.map{|discount, quantity| discount.price * quantity}.sum
 
     respond_to do |format|
       format.turbo_stream
     end
-  end
-
-  def order
   end
 
   private

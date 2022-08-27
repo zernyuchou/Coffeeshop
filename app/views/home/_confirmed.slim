@@ -1,0 +1,13 @@
+.flex.items-center.justify-center.h-screen
+  .flex.flex-col.items-center.space-y-2
+    svg.text-green-600.w-28.h-28[xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke="currentColor" stroke-width="1"]
+      path[stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"]
+    h1.text-4xl.font-bold
+      | Thank You !
+    p
+      | Thank you for your orders! Your orders will be ready in some minutes.
+    = link_to root_path, class: 'inline-flex items-center px-4 py-2 text-white bg-indigo-600 border border-indigo-600 rounded rounded-full hover:bg-indigo-700 focus:outline-none focus:ring' do
+      svg.w-3.h-3.mr-2[xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke="currentColor" stroke-width="2"]
+        path[stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18"]
+      span.text-sm.font-medium
+        |  Home 

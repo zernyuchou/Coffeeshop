@@ -1,8 +1,17 @@
-= turbo_stream.update 'sub_total' do
-  = number_to_currency(@sub_total/100.0, :unit => '$')
-= turbo_stream.update 'discount_details' do
-  = render 'items/discount_details', discounts: @available_discounts
-= turbo_stream.update 'discount_prices' do
-  = render 'items/discount_prices', discounts: @available_discounts
-= turbo_stream.update 'total' do
-  = number_to_currency(@total/100.0, :unit => '$')
+- if params[:commit].present? && @total > 0
+  = turbo_stream.update 'items' do
+    = render 'confirmed'
+- else
+  = turbo_stream.update 'sub_total' do
+    = number_to_currency(@sub_total/100.0, :unit => '$')
+  = turbo_stream.update 'discount_details' do
+    = render 'items/discount_details', discounts: @available_discounts
+  = turbo_stream.update 'discount_prices' do
+    = render 'items/discount_prices', discounts: @available_discounts
+  = turbo_stream.update 'total' do
+    = number_to_currency(@total/100.0, :unit => '$')
+  = turbo_stream.update 'submit_area' do
+    - if @total > 0
+      = submit_tag 'Confirm Order', class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium"
+    - else
+      = submit_tag 'Confirm Order', disabled: true, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium opacity-50 cursor-not-allowed"

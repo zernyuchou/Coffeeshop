@@ -7,9 +7,6 @@ ActiveAdmin.register Discount do
     column 'Item', :discountable_from
     column 'Item', :discountable_to
     column 'Amount (%)', :amount
-    column 'Applied Price (cents)', :total do |discount|
-      discount.applied_price
-    end
     actions
   end
 end
